@@ -37,6 +37,41 @@ nums.length == n + 1
 All the integers in nums appear only once except for precisely one integer which appears two or more times.
 
 
+ .// the array will get change here.
+ 
+  int findDuplicate(vector<int>& nums) {
+     int i;
+      for( i=0;i<nums.size();i++)
+      {
+          if(nums[abs(nums[i])]<0)
+          {
+             return abs(nums[i]);
+              
+          }
+          else
+          {
+              nums[abs(nums[i])]=-nums[abs(nums[i])];
+          }
+      }
+ 
+   return 0;       
+        
+        
+    }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 Approach 3: Floyd's Tortoise and Hare (Cycle Detection)
 
 
