@@ -1,0 +1,59 @@
+https://leetcode.com/problems/merge-intervals/
+
+
+Given a collection of intervals, merge all overlapping intervals.
+
+Example 1:
+
+Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
+Example 2:
+
+Input: intervals = [[1,4],[4,5]]
+Output: [[1,5]]
+Explanation: Intervals [1,4] and [4,5] are considered overlapping.
+NOTE: input types have been changed on April 15, 2019. Please reset to default code definition to get new method signature.
+
+ 
+
+Constraints:
+
+intervals[i][0] <= intervals[i][1]
+
+time complexity : O(ologn)+o(n)
+
+ vector<vector<int>> merge(vector<vector<int>>& ar)     {
+       
+        vector<vector<int>> res;
+        
+        
+        if(ar.size()==0)
+          return res;
+        
+        sort(ar.begin(),ar.end());
+        int left=ar[0][0];
+        int right=ar[0][1];
+        
+        for(int i=1;i<ar.size();i++)
+        {
+          auto x=ar[i];
+          
+          if(x[0]<=right)
+          {
+              right=max(x[1],right);//right of 1st one is larger than 2nd one. eg [1,4] [2,3] // after sorting it will look like this.
+          }
+        else
+        {
+            res.push_back({left,right});
+            left=x[0];
+            right=x[1];
+        }
+            
+            
+        }
+      res.push_back({left,right});  // for last interval
+        
+    return res;
+    }
+    
